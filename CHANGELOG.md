@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3 (2026-10-07)
+- Added `app.py` (Streamlit): pick a sample or paste a public posting, score it, then accept, edit or reject each gap, bullet rewrite and cover letter point.
+- Every run and review is saved to SQLite; a "Recent runs" table shows history.
+- No apply or send button, by design.
+- Added a Streamlit `AppTest` that runs the full flow with a stubbed scorer.
+
 ## v0.2 (2026-10-07)
 - Added `src/db.py`: SQLite tables for `postings`, `runs` and `reviews`, using only the standard library.
 - Each run stores the model and prompt version so results can be compared over time.
