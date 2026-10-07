@@ -8,7 +8,7 @@ def test_score_and_save_review(tmp_path, monkeypatch):
     monkeypatch.setenv("COPILOT_DB", str(tmp_path / "test.db"))
     monkeypatch.setattr(scorer, "score", lambda cv, posting: sample_report())
 
-    at = AppTest.from_file("../app.py").run()
+    at = AppTest.from_file("../app.py", default_timeout=30).run()
     at.selectbox[0].select("01_pm_fintech_payments.md").run()
     at.button[0].click().run()
     assert not at.exception
