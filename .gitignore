@@ -1,0 +1,32 @@
+# Secrets
+.env
+
+# Storage
+*.db
+*.sqlite
+*.sqlite3
+
+# Real personal data: keep only the fake CV in the repo
+data/real/
+data/private/
+*cv*.pdf
+*cv*.docx
+*resume*.pdf
+*resume*.docx
+*_real.*
+*.real.md
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
