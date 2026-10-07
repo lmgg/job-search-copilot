@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4 (2026-10-07)
+- Added `src/evaluate.py`: scores all sample postings and reports label accuracy and expected-gap recall against `data/eval_labels.json`.
+- Added draft hand labels for the 5 sample postings (to be reviewed).
+- README: setup and usage, design decisions, evaluation method, roadmap.
+
 ## v0.3 (2026-10-07)
 - Added `app.py` (Streamlit): pick a sample or paste a public posting, score it, then accept, edit or reject each gap, bullet rewrite and cover letter point.
 - Every run and review is saved to SQLite; a "Recent runs" table shows history.

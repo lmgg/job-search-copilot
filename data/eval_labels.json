@@ -1,0 +1,32 @@
+{
+  "_note": "Hand labels for the fake CV against each sample posting. DRAFT: review and adjust before trusting the eval. A gap counts as found if any of its keywords appears in a reported gap.",
+  "01_pm_fintech_payments.md": {
+    "expected_label": "medium",
+    "expected_gaps": {
+      "payments or fintech domain": ["payment", "fintech", "card", "open banking", "psd2"]
+    }
+  },
+  "02_senior_pm_ai_platform.md": {
+    "expected_label": "low",
+    "expected_gaps": {
+      "hands-on LLM experience": ["llm", "ai", "machine learning", "model", "prompt"],
+      "platform or developer product": ["platform", "developer", "technical product", "mlops"]
+    }
+  },
+  "03_pm_growth_consumer.md": {
+    "expected_label": "medium",
+    "expected_gaps": {
+      "consumer mobile apps": ["mobile", "ios", "android", "consumer"]
+    }
+  },
+  "04_pm_b2b_saas_data.md": {
+    "expected_label": "high",
+    "expected_gaps": {}
+  },
+  "05_pm_healthtech_platform.md": {
+    "expected_label": "medium",
+    "expected_gaps": {
+      "healthcare domain": ["health", "clinical", "clinician", "nhs", "fhir", "dcb0129"]
+    }
+  }
+}

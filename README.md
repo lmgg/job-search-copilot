@@ -21,18 +21,37 @@ _Placeholder: the loop used to build each feature._
 4. **Refine**: adjust prompts, scoring or UI.
 
 ## Key design decisions
-_Placeholder: e.g. Python + SQLite + Streamlit, Claude API for scoring, human-in-the-loop by design._
+- **One API call per posting, structured output.** The scorer asks Claude for a `FitReport` that matches a Pydantic schema, so the app never parses free text.
+- **No invented experience.** The prompt only allows rewrites grounded in the CV, and an honest gap is better than a hidden one.
+- **Human review is the product.** Every gap, bullet and cover letter point gets an accept, edit or reject verdict, stored in SQLite. There is no apply button.
+- **Versioned prompts.** Each run stores the model and `PROMPT_VERSION`, so evaluation results can be compared over time.
+- _Placeholder: add the trade-offs you made and why._
 
 ## What went wrong and what I changed
 _Placeholder: to be filled in as the project evolves._
 
 ## Evaluation
-_Placeholder: how scores are checked against hand-labelled expectations for the sample postings._
+`src/evaluate.py` scores the fake CV against all 5 sample postings and compares the results with hand labels in `data/eval_labels.json`:
+- **Label accuracy**: does the high, medium or low label match the expected one?
+- **Expected-gap recall**: does the report name the gaps a human would expect (keyword match)?
+
+Results: _placeholder until the first run (`python -m src.evaluate --write` saves them to `docs/eval_results.md`)._
 
 ## Roadmap
-_Placeholder: scoring script, SQLite schema, Streamlit interface, evaluation script._
+- [x] Scoring script (`src/scorer.py`)
+- [x] SQLite schema (`src/db.py`)
+- [x] Streamlit review interface (`app.py`)
+- [x] Evaluation script (`src/evaluate.py`)
+- [ ] First evaluation run and prompt refinement
+- _Placeholder: what comes next._
 
-## Setup
+## Setup and usage
 ```bash
-cp .env.example .env   # then add your Anthropic API key
+pip install -r requirements.txt
+cp .env.example .env                      # then add your Anthropic API key
+
+python -m src.scorer data/sample_postings/04_pm_b2b_saas_data.md   # score one posting (prints JSON)
+streamlit run app.py                      # review interface; data saved to data/copilot.db
+python -m src.evaluate --write            # score all samples against the hand labels
+python -m pytest                          # tests use a fake client, no API key needed
 ```
