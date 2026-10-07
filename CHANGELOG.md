@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.4.1 (2026-10-07)
+- Removed the automatic fallback model: if Claude declines a request, the scorer now stops with a `ScoringError` instead of retrying on another model.
+
 ## v0.4 (2026-10-07)
 - Added `src/evaluate.py`: scores all sample postings and reports label accuracy and expected-gap recall against `data/eval_labels.json`.
 - Added draft hand labels for the 5 sample postings (to be reviewed).

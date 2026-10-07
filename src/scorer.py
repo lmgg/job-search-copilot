@@ -49,16 +49,13 @@ class ScoringError(Exception):
 
 def score(cv_text: str, posting_text: str, client: anthropic.Anthropic | None = None) -> FitReport:
     client = client or anthropic.Anthropic()
-    response = client.beta.messages.parse(
+    response = client.messages.parse(
         model=MODEL,
         max_tokens=16000,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": build_user_message(cv_text, posting_text)}],
         output_format=FitReport,
         output_config={"effort": "medium"},
-        # On a safety decline, the API retries on a fallback model in the same call.
-        betas=["server-side-fallback-2026-07-01"],
-        fallbacks="default",
     )
     if response.stop_reason == "refusal":
         raise ScoringError("The model declined to score this posting.")

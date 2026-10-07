@@ -22,7 +22,7 @@ class FakeClient:
     def __init__(self, report=None, stop_reason="end_turn"):
         self.calls = []
         response = SimpleNamespace(stop_reason=stop_reason, parsed_output=report)
-        self.beta = SimpleNamespace(messages=SimpleNamespace(parse=self._parse(response)))
+        self.messages = SimpleNamespace(parse=self._parse(response))
 
     def _parse(self, response):
         def parse(**kwargs):
